@@ -24,16 +24,16 @@
         <h2>1. Introduction</h2>
         <p>
             The web has become more diverse with a growing volume of online content that contains
-            machine readable metadata.
+            machine-readable metadata.
             The development of promising machine learning technologies can be used to easily extract the data existing
-            in the internet<a href="#r1">[1].</a>
-            This has led to the emergence of the concept of Knowledge Graphs (KG). “Knowledge graph is a promising
+            in the internet<a href="#r1"> [1].</a>
+            This has led to the emergence of the concept of Knowledge Graph(KG). “Knowledge graph is a promising
             technique for storing and
             communicating real-world knowledge with nodes representing entities and edges representing relationships
-            between entities”<a href="#r2">[2]</a>. <i> (Written by A. Uduwana)</i>
+            between entities”<a href="#r2"> [2]</a>. <i> (Written by A. Uduwana)</i>
         </p>
         <p>
-            Knowledge Graphs can be categorized in to open and proprietary types. Open KGs like DBpeida, Wikidata,
+            Knowledge Graphs can be categorized into open and proprietary types. Open KGs like DBpeida, Wikidata,
             Freebase,
             YAGO and NELL are publicly accessible and widely used in current research context and Proprietary KGs like
             Facebook’s
@@ -65,7 +65,7 @@
             contains duplicates, inconsistent, or even error prone particularly when information is gathered from
             multiple sources <a href="#r9">[9]</a>.
             As a result, assessing the quality of the generated KG is a crucial step in quality control <a
-                href="#r11">[11]</a>. The quality of KGs
+                href="#r11">[11]</a>. The quality of KGs is
             defined as the fitness for purpose and quality assessment helps to determine for which purpose a KG can be
             reliably used <a href="#r10">[10]</a>.
             This process of ensuring and improving the quality of KGs are known as Knowledge Curation (also known as
@@ -113,7 +113,7 @@
 
         <h3> 2.2. Consistency in Knowledge Graphs</h3>
         <p>
-            In recent research <a href="#r11">[11]</a> “KG consistency is defined as the degree to which the knowledge
+            In recent research <a href="#r11"> [11]</a> “KG consistency is defined as the degree to which the knowledge
             of a KG does not contradict itself”.
             Consistency focused on logical correctness of KGs rather than the semantic correctness of triples <a
                 href="#r7">[7],</a> <a href="#r17">[17]</a>.
@@ -218,7 +218,7 @@
             with context-specific or ambiguous scenarios <a href="#r24">[24]</a>. <i>(Written by A. Uduwana)</i>
         </p>
         <p>
-            For instance, our KG contains two distinct nodes representing the characters<i>Tom Riddle and Lord Voldemort
+            For instance, our KG contains two distinct nodes representing the characters<i> Tom Riddle and Lord Voldemort
             </i>.
             Due to shared facts such as wand core, school, house, mother, and language ability, automated tools may flag
             these nodes as potential duplicates. However, based on domain knowledge, experts can confirm that these two
@@ -230,9 +230,9 @@
         <p>
             Rule-based validation is essential for maintaining the accuracy and consistency of KGs. SPARQL, the
             standardized query
-            language for RDF recommended by the W3C, is widely used for this purpose <a href="#r2">[2]</a>. Ontology
+            language for RDF(Resource Description Framework) recommended by the W3C, is widely used for this purpose <a href="#r2">[2]</a>. Ontology
             management tools like Protégé
-            supports the modeling and storage of KGs in formats like RDF or TTL <a href="#r20">[20]</a>. Competency
+            supports the modeling and storage of KGs in formats like RDF or TTL (Terse RDF Triple Language (Turtle)) <a href="#r20">[20]</a>. Competency
             questions, which define the requirements
             for the KG are first formulated in natural language and then translated into SPARQL queries. Once queries
             are formed, we can
@@ -274,18 +274,19 @@
         <p> Shapes Constraint Language (SHACL) is a W3C-recommendation for defining constraints over RDF data <a
                 href="#r3">[3]</a>.
             Quality metrics such as accuracy and consistency can be ensured by using SHACL as a validation language.
-            SHACL enables schema like structures known as shapes to validate a KG. Through the application of these
+            SHACL enables schema like structures known as shapes to validate a KG <a href="#r22">[22]</a>. Through the
+            application of these
             shapes,
             large volumes of data can be filtered and validated, thereby enhancing the overall quality of the KG <a
                 href="#r21">[21]</a>. <i>(Written by A. Uduwana)</i></p>
 
         <p> The SHACL Core Vocabulary distinguishes between two main types of shapes as node shapes and property shapes
-            <a href="#r24">[24]</a>.
+            <a href="#r22">[22]</a>,<a href="#r24">[24]</a>.
             Node shapes are applied to a set of nodes within an RDF data graph, referred to as focus nodes. Property
             shapes, on
             the other hand, validate the values of particular properties associated with these focus nodes <a
                 href="#r24">[24]</a>.
-            Target specifications are used to define which nodes in the RDF graph are selected <a href="#r3">[3],</a> <a
+            Target specifications are used to define which nodes in the RDF graph are selected <a href="#r3">[3],</a><a
                 href="#r22">[22].</a> <i>(Written by A. Uduwana)</i>
         </p>
 
@@ -334,20 +335,32 @@
             <p class="reference" id="r3">[3] D. Fensel et al., “Knowledge Graphs Methodology, Tools and Selected Use
                 Cases.”
             </p>
-            <p class="reference" id="r4">[4] ] E. B, “Data Solutions for Professional Services,” Engine B, Feb. 02,
-                2021. <a
-                    href="https://engineb.com/2021/02/8-key-benefits-of-knowledge-graphs/">https://engineb.com/2021/02/8-key-benefits-of-knowledge-graphs/</a>
-                (30.06.2025)</p>
-            <p class="reference" id="r5">[5]“In-depth Guide to Knowledge Graph: Benefits, Use Cases & Examples,”
-                research.aimultiple.com.
-                <a href="https://research.aimultiple.com/knowledge-graph/ ">https://research.aimultiple.com/knowledge-graph/
-                </a> (30.06.2025)
+            <p class="reference" id="r4">
+                [4] E. B., “Data Solutions for Professional Services,” Engine B, Feb. 02, 2021.
+                [Online]. Available:
+                <a href="https://engineb.com/2021/02/8-key-benefits-of-knowledge-graphs/" target="_blank"
+                    rel="noopener noreferrer">
+                    https://engineb.com/2021/02/8-key-benefits-of-knowledge-graphs/
+                </a>[Accessed: Jun. 30, 2025].
             </p>
-            <p class="reference" id="r6">[6] “What are the key benefits of using knowledge graphs?,” Zilliz.com, Dec.
-                09,
-                2024. <a
-                    href="https://zilliz.com/ai-faq/what-are-the-key-benefits-of-using-knowledge-graphs">hhttps://zilliz.com/ai-faq/what-are-the-key-benefits-of-using-knowledge-graphs</a>
-                (30.06.2025)</p>
+            <p class="reference" id="r5">
+                [5] “In-depth Guide to Knowledge Graph: Benefits, Use Cases & Examples,” research.aimultiple.com, Jun.
+                26, 2025.
+                [Online]. Available:
+                <a href="https://research.aimultiple.com/knowledge-graph/" target="_blank" rel="noopener noreferrer">
+                    https://research.aimultiple.com/knowledge-graph/
+                </a> [Accessed: Jun. 30, 2025].
+            </p>
+
+            <p class="reference" id="r6">
+                [6] “What are the key benefits of using knowledge graphs?,” Zilliz.com, Dec. 09, 2024.
+                [Online]. Available:
+                <a href="https://zilliz.com/ai-faq/what-are-the-key-benefits-of-using-knowledge-graphs" target="_blank"
+                    rel="noopener noreferrer">
+                    https://zilliz.com/ai-faq/what-are-the-key-benefits-of-using-knowledge-graphs
+                </a> [Accessed: Jun. 30, 2025].
+            </p>
+
             <p class="reference" id="r7">[7] B. Xue and L. Zou, “Knowledge Graph Quality Management: A Comprehensive
                 Survey,” IEEE Trans Knowl Data Eng, vol. 35, no. 5, pp. 4969–4988, May 2023, doi:
                 10.1109/TKDE.2022.3150080.
@@ -393,21 +406,22 @@
             <p class="reference" id="r21"> [21] Diplom-Ingenieurin, “Extraktionv on SHACLShapesfür Evolving
                 KnowledgeGraphs
                 DIPLOMARBEIT zur Erlangung des akademischen Grades.” doi: 10.34726/hss.2025.120502.</p>
-            <p class="reference" id="r22"> [22] Holger Knublauch and Dimitris Kontokostas. 2017. Shapes Constraint
-                Language
-                (SHACL), W3C Recommendation 20 July 2017. W3C Recommendation. World Wide Web Consortium.
-                <a href="https://www.w3.org/TR/2017/REC-shacl-20170720/ ">https://www.w3.org/TR/2017/REC-shacl-20170720/
-                </a> (30.06.2025)
+            <p class="reference" id="r22">
+                [22] H. Knublauch and D. Kontokostas, “Shapes Constraint Language (SHACL),” W3C Recommendation, 20 July
+                2017.
+                World Wide Web Consortium. [Online]. Available:
+                <a href="https://www.w3.org/TR/2017/REC-shacl-20170720/" target="_blank" rel="noopener noreferrer">
+                    https://www.w3.org/TR/2017/REC-shacl-20170720/
+                </a> [Accessed: Jun. 30, 2025].
             </p>
+
             <p class="reference" id="r23"> [23] S. Tsaneva, D. Dessì, F. Osborne, and M. Sabou, “Knowledge graph
                 validation
                 by integrating LLMs and human-in-the-loop,” 2025, doi: 10.5281/zenodo.13730203.</p>
             <p class="reference" id="r24"> [24] B. Zhang, A. M. Peñuela, and E. Simperl, “Towards Explainable Automatic
                 Knowledge Graph Construction with Human-in-the- Loop,” in Frontiers in Artificial Intelligence and
                 Applications, IOS Press BV, Jun. 2023, pp. 274–289. doi: 10.3233/FAIA230091.</p>
-            <p class="reference" id="r25"> [25] ]“Shapes Constraint Language (SHACL),” www.w3.org.
-                <a href="https://www.w3.org/TR/shacl/ ">https://www.w3.org/TR/shacl/ </a> (30.06.2025)
-            </p>
+           
 
             </p>
 
