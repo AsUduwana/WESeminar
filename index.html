@@ -170,7 +170,7 @@
             isFriendOf, “Hermione Granger”) and (“Hermione Granger”, isFriendOf, “Harry
             Potter”). While some redundancy can contribute to fault tolerance, excessive
             duplication can inflate the graph’s size, complicate reasoning and querying,
-            and introduce inconsistencies <a href="#r26">[26],</a><a href="#r27">[27]</a>. Effectively managing this issue involves
+            and introduce inconsistencies <a href="#r26">[26], </a><a href="#r27">[27]</a>. Effectively managing this issue involves
             techniques such as duplicate detection, schema alignment, and entity
             resolution to identify and consolidate overlapping information, thereby
             improving the graph’s efficiency, accuracy, and maintainability <a href="#r28">[28]</a>. <i>(Written by P.M.P.P.Palihena)</i>
@@ -329,6 +329,57 @@
             </figcaption>
         </figure>
 
+        <p>
+            In addition to consistency constraints, a comprehensive set of SPARQL
+            queries was designed to validate the completeness and redundancy of the
+            Harry Potter KG. Specifically, these queries were aligned with the seven
+            established dimensions of completeness: schema, property, population,
+            interlinking, currency, metadata, and labeling completeness
+            <a href="#r25">[25]</a>. Each dimension was operationalized through
+            domain-specific competency questions, formulated in natural language and
+            subsequently translated into executable SPARQL constraints. This enabled
+            targeted validation of both structural and semantic gaps in the KG.
+            <i>(Written by P.M.P.P.Palihena)</i>
+        </p>
+        <p>
+            For example, property completeness was assessed by identifying hp:Student
+            individuals lacking values for both hp:hasHouse and hp:hasBloodStatus, which
+            are essential attributes in the Harry Potter domain. Interlinking
+            completeness was evaluated by selecting instances that were only linked to
+            their type but lacked meaningful relationships, revealing isolated or
+            underconnected nodes. Currency completeness was checked by querying for
+            individuals missing temporal annotations, such as creation or update
+            timestamps. <i>(Written by P.M.P.P.Palihena)</i>
+        </p>
+        <p>
+            Moreover, SPARQL queries were employed to detect redundancies, including
+            semantically equivalent or duplicate triples—such as repeated assertions of
+            the same relationship (e.g., multiple identical hp:hasFriend links between
+            the same pair of characters). This process helped identify unnecessary
+            repetition, which can inflate graph size and introduce inference errors.
+            <i>(Written by P.M.P.P.Palihena)</i>
+        </p>
+        <p>
+            Overall, this rule-based validation strategy using SPARQL provided a
+            granular, interpretable, and domain-aware assessment of knowledge graph
+            quality, and is particularly well-suited for complex narrative domains where
+            both structural and semantic integrity are critical <a href="#r25">[25],</a>
+            <a href="#r30">[30]</a>.<i>(Written by P.M.P.P.Palihena)</i>
+        </p>
+        <p>
+            To further strengthen the validation process, OWL reasoners were employed
+            alongside SPARQL queries to uncover semantic-level issues related to
+            completeness and redundancy. These tools infer implicit facts based on
+            ontology axioms, class hierarchies, and property constraints. For example,
+            if every hp:Student is expected to have a hp:hasBloodStatus property, the
+            absence of this property becomes evident during reasoning. Similarly,
+            redundancies such as duplicate assertions—such as symmetric relationships
+            explicitly stated in both directions—can be detected. By integrating
+            SPARQL-based rule checks with OWL reasoning, we were able to identify both
+            surface-level and structural-level validation issues, thereby enhancing the
+            overall quality assurance of the knowledge graph <a href="#r31"> [31],</a>
+            <a href="#r32"> [32]</a>. (Written by P.M.P.P.Palihena)
+        </p>
         <h3>3.5. Schema Based Validation using SHACL </h3>
         <p> Shapes Constraint Language (SHACL) is a W3C-recommendation for defining constraints over RDF data <a
                 href="#r3">[3]</a>.
@@ -381,8 +432,51 @@
             an error with the specified message in the validation report. <i>(Written by A. Uduwana)</i>
         </p>
 
+        <p>
+            Building upon the foundational SHACL constraints established for structural
+            validation, additional shapes were devised to manage completeness and
+            redundancy checks, thereby extending the scope of validation to capture more
+            nuanced quality dimensions within the knowledge graph. These validations
+            were guided by domain expectations and common modeling constraints in the
+            Harry Potter universe. The following shapes were defined and evaluated using
+            the SHACL Validation Playground.
+            <i>(Written by P.M.P.P.Palihena)</i>
+        </p>
+        <figure>
+                <img src="./SHACL_completeness.png" alt="Shape for completeness" />
+                <figcaption>
+                    <strong>SHACL Shape 03 </strong>: Completeness - Students must have both a house and blood status
+                </figcaption>
+        </figure>
+          <p>
+                This shape targets all individuals of type hp:Student and ensures they have
+                the properties hp:belongsToHouse and hp:hasBloodStatus, each with a
+                sh:minCount 1 constraint. These properties are essential for maintaining the
+                completeness. Nodes that violate these constraints are flagged in the
+                validation report, which identifies both the specific node and the
+                corresponding violated constraint.
+                <i>(Written by P.M.P.P.Palihena)</i>
+            </p>
 
+            <figure>
+                <img src="./SHACL_Redundancy.png" alt="Shape for redundancy" />
+                <figcaption>
+                    <strong>SHACL Shape 04 </strong>: Redundancy Constraints on Head of House Assignments
+                </figcaption>
+            </figure>
 
+            <p>
+                To minimize redundancy within the knowledge graph, two SHACL shapes were
+                employed. The first constraint enforces a sh:maxCount 1 restriction on the
+                hp:isHeadOfHouse property for individuals, thereby ensuring that no single
+                entity is assigned as head of more than one house. The second constraint
+                utilizes an inverse path (sh:inversePath hp:isHeadOfHouse) to enforce that
+                each instance of hp:House is associated with at most one head, thereby
+                preserving the uniqueness of headship assignments per house. Violations of
+                these constraints are explicitly captured in the SHACL validation report,
+                identifying both the offending nodes and the specific rules they breach.
+                <i>(Written by P.M.P.P.Palihena)</i>
+            </p>
         <section class="references">
             <h2>6. Bibliography</h2>
             <p class="reference" id="r1">[1] H. Bu and K. Kuwabara, “Toward Crowdsourced Knowledge Graph Construction:
@@ -506,6 +600,22 @@
                     [29] Paulheim, H. (2016) ‘Knowledge graph refinement: A survey of approaches
                     and evaluation methods’, Semantic Web, 8(3), pp. 489–508.
                     doi:10.3233/sw-160218.
+                </p>
+                <p class="reference" id="r30">
+                    [30] Hoppa, J. (2025) Turn a Harry Potter book into a knowledge graph, Graph
+                    Database & Analytics. Available at:
+                    https://neo4j.com/blog/developer/turn-a-harry-potter-book-into-a-knowledge-graph/
+                    (Accessed: 02 July 2025).
+                </p>
+                  <p class="reference" id="r31">
+                    [31] Unlocking the power of Generative AI: Why owl leads in knowledge
+                    representation and semantic layers data.world. Available at:
+                    https://data.world/blog/owl-semantic-layers/ (Accessed: 03 July 2025).
+                </p>
+                <p class="reference" id="r32">
+                    [32] Unlocking the power of Generative AI: Why owl leads in knowledge
+                    representation and semantic layers data.world. Available at:
+                    https://data.world/blog/owl-semantic-layers/ (Accessed: 03 July 2025).
                 </p>
             </p>
 

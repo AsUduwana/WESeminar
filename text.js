@@ -1,18 +1,16 @@
 <>
   <p>
-    Manual validation is also employed to assess completeness and redundancy in
-    knowledge graphs. Experts examine sampled triples to determine whether key
-    entities, relationships, and attributes are adequately represented, helping
-    to identify missing information. While effective, this process is
-    resource-intensive and does not scale well <a href="#r25">[25]</a>.
-    Regarding redundancy, manual inspection aids in detecting duplicate or
-    semantically equivalent triples, such as different expressions of the same
-    relationship between “Harry Potter” and “Hermione Granger.” Although manual
-    review can uncover subtle redundancies that automated methods may miss, it
-    is typically feasible only for small samples in large KGs
-    <a href="#r29">[29]</a>. Therefore, manual validation of completeness and
-    redundancy is usually combined with automated techniques to ensure a more
-    thorough and scalable quality assessment.
-    <i>(Written by P.M.P.P.Palihena)</i>
+    To further strengthen the validation process, OWL reasoners were employed
+    alongside SPARQL queries to uncover semantic-level issues related to
+    completeness and redundancy. These tools infer implicit facts based on
+    ontology axioms, class hierarchies, and property constraints. For example,
+    if every hp:Student is expected to have a hp:hasBloodStatus property, the
+    absence of this property becomes evident during reasoning. Similarly,
+    redundancies such as duplicate assertions—such as symmetric relationships
+    explicitly stated in both directions—can be detected. By integrating
+    SPARQL-based rule checks with OWL reasoning, we were able to identify both
+    surface-level and structural-level validation issues, thereby enhancing the
+    overall quality assurance of the knowledge graph <a href="#r31"> [2],</a>{" "}
+    <a href="#r32"> [2]</a>. (Written by P.M.P.P.Palihena)
   </p>
 </>;
