@@ -134,8 +134,48 @@
                 <strong>Figure 01</strong>: Example of Logical Inconsistency
             </figcaption>
         </figure>
+        <h3> 2.3. Completeness in Knowledge Graphs </h3>
 
-        <h3> 2.3. Building and Validating a Domain-Specific KG: A Harry Potter Case Study</h3>
+        <p>
+            Completeness in Knowledge Graphs refers to the extent to which the graph
+            includes all the necessary entities, properties, and relationships required
+            to support a specific application or domain. Given the open-world nature of
+            most KGs and the inherent limitations of data extraction methods, knowledge
+            graphs are often incomplete, making completeness a critical dimension of
+            quality assessment.
+        </p>
+        <p>
+            There are seven recognized types of completeness: (i) Schema completeness,
+            which concerns whether all required classes and properties are defined in
+            the schema; (ii) Property completeness, which refers to the presence or
+            absence of expected property values for entities; (iii) Population
+            completeness, which measures how many relevant real-world entities are
+            represented in the graph; (iv) Interlinking completeness, which assesses the
+            existence of links between datasets using linksets; (v) Currency
+            completeness, which evaluates whether the data is up to date; (vi) Metadata
+            completeness, which relates to the availability of contextual and provenance
+            information; and (vii) Labelling completeness, which concerns the presence
+            of human-readable labels for entities and properties <a href="#r25">[25]</a>
+            . <i>(Written by P.M.P.P.Palihena)</i>
+        </p>
+        <h3> 2.4. Redundancy in Knowledge Graphs </h3>
+        <p>
+            The presence of duplicate or semantically equivalent facts, relationships, or
+            entities is a common challenge in Knowledge Graphs. Such redundancy often
+            arises from integrating heterogeneous data sources, noisy extraction
+            processes, or schema mismatches. For instance, in a KG modeling the Harry
+            Potter universe, the friendship between "Harry Potter" and "Hermione Granger"
+            might be represented multiple times using different predicates like isFriendOf
+            and hasFriend, or through bidirectional triples such as (“Harry Potter”,
+            isFriendOf, “Hermione Granger”) and (“Hermione Granger”, isFriendOf, “Harry
+            Potter”). While some redundancy can contribute to fault tolerance, excessive
+            duplication can inflate the graph’s size, complicate reasoning and querying,
+            and introduce inconsistencies <a href="#r26">[26],</a><a href="#r27">[27]</a>. Effectively managing this issue involves
+            techniques such as duplicate detection, schema alignment, and entity
+            resolution to identify and consolidate overlapping information, thereby
+            improving the graph’s efficiency, accuracy, and maintainability <a href="#r28">[28]</a>. <i>(Written by P.M.P.P.Palihena)</i>
+            </p>
+        <h3> 2.5. Building and Validating a Domain-Specific KG: A Harry Potter Case Study</h3>
         <p>
             Generally, accuracy and consistency in KGs can be detected through several validation methods. To
             demonstrate
@@ -159,8 +199,10 @@
 
         <h2> 3. State-of-the-Art Methods for KG Validation</h2>
 
-        <p>Generally, accuracy and consistency of KGs can be evaluated using several validation methods. <i>(Written by
-                A. Uduwana)</i></p>
+        <p>
+            Generally, accuracy, consistency, completeness and redundency of KGs can be
+            evaluated using several validation methods.
+        </p>
 
         <h3>3.1. Manual Ground Truth Validation</h3>
 
@@ -180,6 +222,23 @@
             obtain a statistically
             relevant estimate, though this increases both the cost and time required for manual annotation <a
                 href="#r14">[14]</a>. <i>(Written by A. Uduwana)</i>
+        </p>
+
+        <p>
+            Manual validation is also employed to assess completeness and redundancy in
+            knowledge graphs. Experts examine sampled triples to determine whether key
+            entities, relationships, and attributes are adequately represented, helping
+            to identify missing information. While effective, this process is
+            resource-intensive and does not scale well <a href="#r25">[25]</a>.
+            Regarding redundancy, manual inspection aids in detecting duplicate or
+            semantically equivalent triples, such as different expressions of the same
+            relationship between “Harry Potter” and “Hermione Granger.” Although manual
+            review can uncover subtle redundancies that automated methods may miss, it
+            is typically feasible only for small samples in large KGs
+            <a href="#r29">[29]</a>. Therefore, manual validation of completeness and
+            redundancy is usually combined with automated techniques to ensure a more
+            thorough and scalable quality assessment.
+            <i>(Written by P.M.P.P.Palihena)</i>
         </p>
 
         <h3> 3.2. Crowdsourcing</h3>
@@ -421,8 +480,33 @@
             <p class="reference" id="r24"> [24] B. Zhang, A. M. Peñuela, and E. Simperl, “Towards Explainable Automatic
                 Knowledge Graph Construction with Human-in-the- Loop,” in Frontiers in Artificial Intelligence and
                 Applications, IOS Press BV, Jun. 2023, pp. 274–289. doi: 10.3233/FAIA230091.</p>
-           
 
+              <p class="reference" id="r25">
+                    [25] S. Issa, O. Adekunle, F. Hamdi, S. S. S. Cherfi, M. Dumontier, and A.
+                    Zaveri, “Knowledge Graph Completeness: A Systematic Literature Review,”
+                    2021, Institute of Electrical and Electronics Engineers Inc. doi:
+                    10.1109/ACCESS.2021.3056622.
+                </p>
+                <p class="reference" id="r26">
+                    [26] Hur, A., Janjua, N. and Ahmed, M. (2021) ‘A survey on state-of-the-art
+                    techniques for knowledge graphs construction and challenges ahead’, 2021
+                    IEEE Fourth International Conference on Artificial Intelligence and
+                    Knowledge Engineering (AIKE), pp. 99–103. doi:10.1109/aike52691.2021.00021.
+                </p>
+                <p class="reference" id="r27">
+                    [27] Hofer, M. et al. (2024) ‘Construction of knowledge graphs: Current
+                    State and challenges’, Information, 15(8), p. 509. doi:10.3390/info15080509.
+                </p>
+                <p class="reference" id="r28">
+                    [28] Li, W. et al. (2023) ‘Constructing low-redundant and high-accuracy
+                    knowledge graphs for education’, Lecture Notes in Computer Science, pp.
+                    148–160. doi:10.1007/978-3-031-33023-0_13.
+                </p>
+                  <p class="reference" id="r29">
+                    [29] Paulheim, H. (2016) ‘Knowledge graph refinement: A survey of approaches
+                    and evaluation methods’, Semantic Web, 8(3), pp. 489–508.
+                    doi:10.3233/sw-160218.
+                </p>
             </p>
 
         </section>
