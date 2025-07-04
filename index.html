@@ -130,7 +130,52 @@
             </figcaption>
         </figure>
 
-        <h3> 2.3. Building and Validating a Domain-Specific KG: A Harry Potter Case Study</h3> <i>(Written by A. Uduwana)</i>
+        <h3> 2.3. Completeness in Knowledge Graphs </h3> <i>(Written by P.M.P.P.Palihena)</i>
+
+        <p>
+            Completeness in Knowledge Graphs refers to the extent to which the graph
+            includes all the necessary entities, properties, and relationships required
+            to support a specific application or domain. Given the open-world nature of
+            most KGs and the inherent limitations of data extraction methods, knowledge
+            graphs are often incomplete, making completeness a critical dimension of
+            quality assessment.
+        </p>
+        <p>
+            There are seven recognized types of completeness: (i) Schema completeness,
+            which concerns whether all required classes and properties are defined in
+            the schema; (ii) Property completeness, which refers to the presence or
+            absence of expected property values for entities; (iii) Population
+            completeness, which measures how many relevant real-world entities are
+            represented in the graph; (iv) Interlinking completeness, which assesses the
+            existence of links between datasets using linksets; (v) Currency
+            completeness, which evaluates whether the data is up to date; (vi) Metadata
+            completeness, which relates to the availability of contextual and provenance
+            information; and (vii) Labelling completeness, which concerns the presence
+            of human-readable labels for entities and properties <a href="#r25">[25]</a>
+            .
+        </p>
+        <h3> 2.4. Redundancy in Knowledge Graphs </h3> <i>(Written by P.M.P.P.Palihena)</i>
+        <p>
+            The presence of duplicate or semantically equivalent facts, relationships,
+            or entities is a common challenge in Knowledge Graphs. Such redundancy often
+            arises from integrating heterogeneous data sources, noisy extraction
+            processes, or schema mismatches. For instance, in a KG modeling the Harry
+            Potter universe, the friendship between "Harry Potter" and "Hermione
+            Granger" might be represented multiple times using different predicates like
+            isFriendOf and hasFriend, or through bidirectional triples such as (“Harry
+            Potter”, isFriendOf, “Hermione Granger”) and (“Hermione Granger”,
+            isFriendOf, “Harry Potter”). While some redundancy can contribute to fault
+            tolerance, excessive duplication can inflate the graph’s size, complicate
+            reasoning and querying, and introduce inconsistencies
+            <a href="#r26">[26], </a>
+            <a href="#r27">[27]</a>. Effectively managing this issue involves techniques
+            such as duplicate detection, schema alignment, and entity resolution to
+            identify and consolidate overlapping information, thereby improving the
+            graph’s efficiency, accuracy, and maintainability <a href="#r28">[28]</a>.
+        </p>
+        <h3>          
+            2.5. Building and Validating a Domain-Specific KG: A Harry Potter Case Study
+        </h3><i>(Written by A. Uduwana)</i>
         <p>
             Generally, accuracy and consistency in KGs can be detected through several validation methods. To
             demonstrate
