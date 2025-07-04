@@ -194,10 +194,14 @@
             <figcaption>
                 <strong>Figure 02</strong>: KG Creation Workflow 
         </figure>
-
+    </section>
+    <section>
         <h2> 3. State-of-the-Art Methods for KG Validation</h2>
 
-        <p>Generally, accuracy and consistency of KGs can be evaluated using several validation methods. </p>
+        <p>
+            Generally, accuracy, consistency, completeness and redundency of KGs can be
+            evaluated using several validation methods.
+        </p>
 
         <h3>3.1. Manual Ground Truth Validation</h3>
 
@@ -216,6 +220,22 @@
             obtain a statistically
             relevant estimate, though this increases both the cost and time required for manual annotation <a
                 href="#r14">[14]</a>. <i>(Written by A. Uduwana)</i>
+        </p>
+        <p>
+            Manual validation is also employed to assess completeness and redundancy in
+            knowledge graphs. Experts examine sampled triples to determine whether key
+            entities, relationships, and attributes are adequately represented, helping
+            to identify missing information. While effective, this process is
+            resource-intensive and does not scale well <a href="#r25">[25]</a>.
+            Regarding redundancy, manual inspection aids in detecting duplicate or
+            semantically equivalent triples, such as different expressions of the same
+            relationship between “Harry Potter” and “Hermione Granger.” Although manual
+            review can uncover subtle redundancies that automated methods may miss, it
+            is typically feasible only for small samples in large KGs
+            <a href="#r29">[29]</a>. Therefore, manual validation of completeness and
+            redundancy is usually combined with automated techniques to ensure a more
+            thorough and scalable quality assessment.
+            <i>(Written by P.M.P.P.Palihena)</i>
         </p>
 
         <h3> 3.2. Crowdsourcing</h3> <i>(Written by A. Uduwana)</i>
@@ -304,6 +324,49 @@
             </figcaption>
         </figure>
 
+          <p>
+            In addition to consistency constraints, a comprehensive set of SPARQL
+            queries was designed to validate the completeness and redundancy of the
+            Harry Potter KG. Specifically, these queries were aligned with the seven
+            established dimensions of completeness: schema, property, population,
+            interlinking, currency, metadata, and labelling
+            <a href="#r25">[25]</a>. Each dimension was operationalized through
+            domain-specific competency questions, formulated in natural language and
+            subsequently translated into executable SPARQL constraints. This enabled
+            targeted validation of both structural and semantic gaps in the KG.
+            <i>(Written by P.M.P.P.Palihena)</i>
+        </p>
+        <p>
+            For example, property completeness was assessed by identifying hp:Student
+            individuals lacking values for both hp:hasHouse and hp:hasBloodStatus, which
+            are essential attributes in the Harry Potter domain. Interlinking
+            completeness was evaluated by selecting instances that were only linked to
+            their type but lacked meaningful relationships, revealing isolated or
+            underconnected nodes. Currency completeness was checked by querying for
+            individuals missing temporal annotations, such as creation or update
+            timestamps.
+        </p>
+        <p>
+            Moreover, SPARQL queries were employed to detect redundancies, including
+            semantically equivalent or duplicate triples—such as repeated assertions of
+            the same relationship (e.g., multiple identical hp:hasFriend links between
+            the same pair of characters). This process helped identify unnecessary
+            repetition, which can inflate graph size and introduce inference errors.
+        </p>
+        <p>
+            To further strengthen the validation process, OWL reasoners were employed
+            alongside SPARQL queries to uncover semantic-level issues related to
+            completeness and redundancy. These tools infer implicit facts based on
+            ontology axioms, class hierarchies, and property constraints. For example,
+            if every hp:Student is expected to have a hp:hasBloodStatus property, the
+            absence of this property becomes evident during reasoning. Similarly,
+            redundancies such as duplicate assertions—such as symmetric relationships
+            explicitly stated in both directions—can be detected. By integrating
+            SPARQL-based rule checks with OWL reasoning, we were able to identify both
+            surface-level and structural-level validation issues, thereby enhancing the
+            overall quality assurance of the knowledge graph <a href="#r31"> [31],</a>
+            <a href="#r32"> [32]</a>. <i>(Written by P.M.P.P.Palihena)</i>
+        </p>
         <h3>3.5. Schema Based Validation using SHACL </h3>
         <p> Shapes Constraint Language (SHACL) is a W3C-recommendation for defining constraints over RDF data <a
                 href="#r3">[3]</a>.
@@ -356,7 +419,166 @@
             an error with the specified message in the validation report. <i>(Written by A. Uduwana)</i>
         </p>
 
+          <p>
+            Building upon the foundational SHACL constraints established for structural
+            validation, additional shapes were devised to manage completeness and
+            redundancy checks, thereby extending the scope of validation to capture more
+            nuanced quality dimensions within the knowledge graph. These validations
+            were guided by domain expectations and common modeling constraints in the
+            Harry Potter universe. The following shapes were defined and evaluated using
+            the SHACL Validation Playground.
+        </p>
+        <figure>
+            <img src="./SHACL_completeness.png" alt="Shape for completeness" />
+            <figcaption>
+            <strong>SHACL Shape 03 </strong>: Completeness - Students must have both a
+            house and blood status
+            </figcaption>
+        </figure>
+        <p>
+            This shape targets all individuals of type hp:Student and ensures they have
+            the properties hp:belongsToHouse and hp:hasBloodStatus, each with a
+            sh:minCount 1 constraint. These properties are essential for maintaining the
+            completeness. Nodes that violate these constraints are flagged in the
+            validation report, which identifies both the specific node and the
+            corresponding violated constraint.
+        </p>
 
+        <figure>
+            <img src="./SHACL_Redundancy.png" alt="Shape for redundancy" />
+            <figcaption>
+            <strong>SHACL Shape 04 </strong>: Redundancy Constraints on Head of House
+            Assignments
+            </figcaption>
+        </figure>
+
+        <p>
+            To minimize redundancy within the knowledge graph, two SHACL shapes were
+            employed. The first constraint enforces a sh:maxCount 1 restriction on the
+            hp:isHeadOfHouse property for individuals, thereby ensuring that no single
+            entity is assigned as head of more than one house. The second constraint
+            utilizes an inverse path (sh:inversePath hp:isHeadOfHouse) to enforce that
+            each instance of hp:House is associated with at most one head, thereby
+            preserving the uniqueness of headship assignments per house. Violations of
+            these constraints are explicitly captured in the SHACL validation report,
+            identifying both the offending nodes and the specific rules they breach.
+            <i>(Written by P.M.P.P.Palihena)</i>
+        </p>
+    </section>
+    <section>
+        <h2> 4. Challenges in Knowledge Graph Evaluation and Validation</h2> <i>(Written by P.M.P.P.Palihena)</i>
+        <p>
+            The widespread adoption of KGs across diverse application domains has
+            amplified the importance of robust evaluation and validation methodologies.
+            However, this task remains inherently complex due to the multifaceted nature
+            of KGs, their integration of heterogeneous data sources, and the absence of
+            standardized validation frameworks <a href="#r29">[29],</a><a href="#r33">[33]</a>.
+            The key challenges can be categorized as follows:
+        </p>
+        <p>
+            <h3>4.1 Absence of Ground Truth</h3> A foundational obstacle in KG
+            validation is the lack of definitive ground truth or gold standard datasets.
+            Unlike traditional relational databases with well-defined schemas and
+            controlled inputs, KGs often draw from noisy, incomplete, or unstructured
+            sources. This heterogeneity makes it difficult to establish objective
+            baselines for evaluating dimensions such as accuracy or completeness
+            <a href="#r29">[29]</a>.
+        </p>
+        <p>
+            <h3>4.2 Context-Dependent Quality Dimensions</h3> Another significant
+            challenge is the contextual nature of quality metrics. Concepts like
+            relevance, completeness, and trustworthiness cannot be universally defined
+            but must be interpreted based on the domain and use case. For example,
+            completeness in a biomedical KG may emphasize the coverage of
+            protein–protein interactions, while in a cultural heritage KG, it may
+            pertain to temporal or geographical span <a href="#r33">[33],</a><a href="#r34">[34]</a>. 
+            This variability necessitates domain-specific validation strategies
+            and hinders the development of general-purpose validation pipelines.
+        </p>
+        <p>
+            <h3>4.3 Semantic Inconsistency and Integration Complexity</h3> Semantic
+            heterogeneity becomes especially problematic when integrating data from
+            multiple sources. Disparate vocabularies, inconsistent class hierarchies,
+            and misaligned property semantics can lead to semantic drift, where the
+            intended meaning of data is altered or obscured. While technologies such as
+            OWL reasoners and SHACL constraints can detect certain inconsistencies,
+            resolving them typically requires manual curation and expert oversight
+            <a href="#r34">[34]</a>.
+        </p>
+        <p>
+            <h3>4.4 Scalability of Validation Techniques</h3> The scalability of
+            validation tools and methodologies represents a critical bottleneck. As KGs
+            scale to encompass millions or even billions of triples, executing complex
+            validation rules, particularly those involving logical reasoning or
+            pattern based SPARQL constraints becomes computationally expensive. Most
+            current tools are not optimized for efficient large scale validation, often
+            requiring compromises between completeness of checks and system performance
+            <a href="#r29">[29]</a>.
+        </p>
+        <p>
+            <h3>4.5 Temporal Dynamics and Continuous Validation</h3> 
+            Dynamic and evolving nature of real-world knowledge introduces challenges
+            for maintaining up-to-date and consistent KGs. As new data is ingested the
+            previously validated assertions may become obsolete or conflicting. Ensuring
+            continuous validation requires the development of incremental validation
+            mechanisms that can detect and resolve issues in response to changes over
+            time. Despite recent advances, this remains an open and active area of
+            research <a href="#r33">[33], </a><a href="#r34">[34]</a>.
+        </p>
+    </section>
+    <section>
+        <h2> 5. Issues in Maintaining High-Quality Knowledge Graphs</h2> <i>(Written by P.M.P.P.Palihena)</i>
+        <p>
+            Maintaining the quality of KGs post deployment is a complex task, influenced
+            by evolving data sources, schema modifications, and operational constraints.
+            One of the most pressing issues is data decay, where factual accuracy
+            deteriorates over time due to real-world changes. In the absence of robust
+            mechanisms to update or annotate temporal metadata, outdated information may
+            remain undetected within the KG. That leads to misleading inferences and
+            potentially incorrect conclusions <a href="#r29">[29], </a>
+            <a href="#r33">[33]</a>. Another persistent problem is redundancy,
+            particularly in collaborative or semi-automated KG construction pipelines.
+            Duplicate triples, semantically equivalent relationships, and overlapping
+            entities can accumulate, which may cause degradation of reasoning
+            performance <a href="#r29">[29], </a>
+            <a href="#r34">[33]</a>. 
+        </p>
+        <p>
+            Entity resolution and identity management remain
+            challenging when integrating new data. Correctly merging or differentiating
+            entities based on context is complex, and errors can lead to fragmented
+            knowledge and reduced semantic consistency <a href="#r34">[34]</a>. Ontology
+            drift is another issue, referring to unexpected changes in schema
+            definitions that can cause mismatches between older and newer data, leading
+            to problems with compatibility and reasoning <a href="#r33">[33]</a>.
+            Governance and workflow challenges further exacerbate quality risks in
+            knowledge graphs. In decentralized or crowdsourced environments, the lack of
+            standardized validation protocols, contribution guidelines, and clearly
+            defined curator roles often leads to inconsistency, incompleteness, and bias
+            <a href="#r29">[29], </a>
+            <a href="#r33">[33]</a>. Together, these issues underscore the need for
+            ongoing, domain-aware quality monitoring, automated validation pipelines,
+            and human-in-the-loop mechanisms to sustain KG reliability and utility over
+            time.
+        </p>
+    </section>
+    <section>
+        <h2>6. Conclusion</h2> <i>(Written by P.M.P.P.Palihena)</i>
+        <p>
+            Ensuring the quality of Knowledge Graphs is an ongoing challenge shaped by
+            data heterogeneity, evolving schemas, and the absence of universal
+            validation standards. This study demonstrated that combining automated
+            techniques such as SHACL constraints, OWL reasoning, and SPARQL-based
+            rules, with expert review enables effective detection of issues like
+            incompleteness, redundancy, and semantic inconsistency. However, sustaining
+            KG integrity requires continuous, domain-specific validation and robust
+            governance to address operational challenges including data decay, entity
+            resolution, and ontology drift. Advancing scalable, adaptive validation
+            frameworks and integrating user feedback will be crucial for building
+            reliable, high-impact Knowledge Graphs across diverse domains.
+            <a href="#r29">[29], </a><a href="#r33">[33], </a></a><a href="#r34">[34]</a>.
+        </p>
+    </section>
 
         <section class="references">
             <h2>6. Bibliography</h2>
@@ -455,8 +677,57 @@
             <p class="reference" id="r24"> [24] B. Zhang, A. M. Peñuela, and E. Simperl, “Towards Explainable Automatic
                 Knowledge Graph Construction with Human-in-the- Loop,” in Frontiers in Artificial Intelligence and
                 Applications, IOS Press BV, Jun. 2023, pp. 274–289. doi: 10.3233/FAIA230091.</p>
-           
-
+             <p class="reference" id="r25">
+                [25] S. Issa, O. Adekunle, F. Hamdi, S. S. S. Cherfi, M. Dumontier, and A.
+                Zaveri, “Knowledge Graph Completeness: A Systematic Literature Review,”
+                2021, Institute of Electrical and Electronics Engineers Inc. doi:
+                10.1109/ACCESS.2021.3056622.
+            </p>
+            <p class="reference" id="r26">
+                [26] Hur, A., Janjua, N. and Ahmed, M. (2021) ‘A survey on state-of-the-art
+                techniques for knowledge graphs construction and challenges ahead’, 2021
+                IEEE Fourth International Conference on Artificial Intelligence and
+                Knowledge Engineering (AIKE), pp. 99–103. doi:10.1109/aike52691.2021.00021.
+            </p>
+            <p class="reference" id="r27">
+                [27] Hofer, M. et al. (2024) ‘Construction of knowledge graphs: Current
+                State and challenges’, Information, 15(8), p. 509. doi:10.3390/info15080509.
+            </p>
+            <p class="reference" id="r28">
+                [28] R. Guimarães and A. Ozaki, “Reasoning in Knowledge Graphs,” in
+                OpenAccess Series in Informatics, Schloss Dagstuhl- Leibniz-Zentrum fur
+                Informatik GmbH, Dagstuhl Publishing, Jun. 2022. doi:
+                10.4230/OASIcs.AIB.2022.2.
+            </p>
+            <p class="reference" id="r29">
+                [29] Paulheim, H. (2016) ‘Knowledge graph refinement: A survey of approaches
+                and evaluation methods’, Semantic Web, 8(3), pp. 489–508.
+                doi:10.3233/sw-160218.
+            </p>
+            <p class="reference" id="r30">
+                [30] Hoppa, J. (2025) Turn a Harry Potter book into a knowledge graph, Graph
+                Database & Analytics. Available at:
+                https://neo4j.com/blog/developer/turn-a-harry-potter-book-into-a-knowledge-graph/
+                (Accessed: 02 July 2025).
+            </p>
+            <p class="reference" id="r31">
+                [31] Unlocking the power of Generative AI: Why owl leads in knowledge
+                representation and semantic layers data.world. Available at:
+                https://data.world/blog/owl-semantic-layers/ (Accessed: 03 July 2025).
+            </p>
+            <p class="reference" id="r32">
+                [32] Unlocking the power of Generative AI: Why owl leads in knowledge
+                representation and semantic layers data.world. Available at:
+                https://data.world/blog/owl-semantic-layers/ (Accessed: 03 July 2025).
+            </p>
+            <p class="reference" id="r33">
+                [33] Färber, M., Bartscherer, F., Menne, C., & Rettinger, A. (2018). Linked
+                Data Quality of DBpedia, Freebase, OpenCyc, Wikidata, and YAGO. Semantic
+                Web, 9(1), 77–129. https://doi.org/10.3233/SW-170275
+            </p>
+            <p class="reference" id="r34">
+                [34] Hogan, A., Blomqvist, E., Cochez, M., et al. (2021). Knowledge Graphs.
+                ACM Computing Surveys, 54(4), 1–37. https://doi.org/10.1145/3447772
             </p>
 
         </section>
