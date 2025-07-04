@@ -199,7 +199,7 @@
         <h2> 3. State-of-the-Art Methods for KG Validation</h2>
 
         <p>
-            Generally, accuracy, consistency, completeness and redundency of KGs can be
+            Generally, accuracy, consistency, completeness and redundancy of KGs can be
             evaluated using several validation methods.
         </p>
 
@@ -471,7 +471,7 @@
     <section>
         <h2> 4. Challenges in Knowledge Graph Evaluation and Validation</h2> <i>(Written by P.M.P.P.Palihena)</i>
         <p>
-            The widespread adoption of KGs across diverse application domains has
+            The widespread adoption of Knowledge Graphs across diverse application domains has
             amplified the importance of robust evaluation and validation methodologies.
             However, this task remains inherently complex due to the multifaceted nature
             of KGs, their integration of heterogeneous data sources, and the absence of
@@ -520,27 +520,27 @@
         </p>
         <p>
         <h3>4.5 Temporal Dynamics and Continuous Validation</h3>
-        Dynamic and evolving nature of real-world knowledge introduces challenges
-        for maintaining up-to-date and consistent KGs. As new data is ingested the
-        previously validated assertions may become obsolete or conflicting. Ensuring
-        continuous validation requires the development of incremental validation
-        mechanisms that can detect and resolve issues in response to changes over
-        time. Despite recent advances, this remains an open and active area of
-        research <a href="#r33">[33], </a><a href="#r34">[34]</a>.
+            Dynamic and evolving nature of real-world knowledge introduces significant
+            challenges for maintaining up-to-date and consistent KGs. As new data is
+            ingested, previously validated assertions may become obsolete or conflicting.
+            Ensuring continuous validation requires the development of incremental
+            validation mechanisms that can detect and resolve issues in response to
+            changes over time. Despite recent advances in tooling and automation, this
+            remains an open and active area of research <a href="#r33">[33], </a><a href="#r34">[34]</a>.
         </p>
     </section>
     <section>
         <h2> 5. Issues in Maintaining High-Quality Knowledge Graphs</h2> <i>(Written by P.M.P.P.Palihena)</i>
         <p>
-            Maintaining the quality of KGs post deployment is a complex task, influenced
+            Maintaining the quality of Knowledge Graphs post deployment is a complex task, influenced
             by evolving data sources, schema modifications, and operational constraints.
             One of the most pressing issues is data decay, where factual accuracy
             deteriorates over time due to real-world changes. In the absence of robust
             mechanisms to update or annotate temporal metadata, outdated information may
-            remain undetected within the KG. That leads to misleading inferences and
+            remain undetected within the Knowledge Graph. That leads to misleading inferences and
             potentially incorrect conclusions <a href="#r29">[29], </a>
             <a href="#r33">[33]</a>. Another persistent problem is redundancy,
-            particularly in collaborative or semi-automated KG construction pipelines.
+            particularly in collaborative or semi-automated Knowledge Graph construction pipelines.
             Duplicate triples, semantically equivalent relationships, and overlapping
             entities can accumulate, which may cause degradation of reasoning
             performance <a href="#r29">[29], </a>
@@ -557,7 +557,9 @@
             Governance and workflow challenges further exacerbate quality risks in
             knowledge graphs. In decentralized or crowdsourced environments, the lack of
             standardized validation protocols, contribution guidelines, and clearly
-            defined curator roles often leads to inconsistency, incompleteness, and bias
+            defined curator roles often leads to inconsistency, incompleteness, and bias.
+            Lastly, the lack of user feedback integration into maintenance workflows limits 
+            the detection and correction of errors, especially for high-impact or frequently queried nodes.
             <a href="#r29">[29], </a>
             <a href="#r33">[33]</a>. Together, these issues underscore the need for
             ongoing, domain-aware quality monitoring, automated validation pipelines,
@@ -569,17 +571,17 @@
         <h2>6. Conclusion</h2> <i>(Written by P.M.P.P.Palihena)</i>
         <p>
             Ensuring the quality of Knowledge Graphs is an ongoing challenge shaped by
-            data heterogeneity, evolving schemas, and the absence of universal
-            validation standards. This study demonstrated that combining automated
-            techniques such as SHACL constraints, OWL reasoning, and SPARQL-based
-            rules, with expert review enables effective detection of issues like
-            incompleteness, redundancy, and semantic inconsistency. However, sustaining
-            KG integrity requires continuous, domain-specific validation and robust
-            governance to address operational challenges including data decay, entity
-            resolution, and ontology drift. Advancing scalable, adaptive validation
-            frameworks and integrating user feedback will be crucial for building
-            reliable, high-impact Knowledge Graphs across diverse domains <a href="#r29">[29], </a><a href="#r33">[33], </a></a><a href="#r34">[34]</a>.
-            
+            data heterogeneity, evolving schemas, and the absence of universal validation
+            standards. This study demonstrated that combining automated techniques such as
+            SHACL constraints, OWL reasoning, and SPARQL-based rules, with expert review,
+            enables effective detection of issues like incompleteness, redundancy, and
+            semantic inconsistency. However, sustaining KG integrity requires continuous,
+            domain-specific validation and robust governance to address operational
+            challenges including data decay, entity resolution, and ontology drift.
+            Advancing scalable, adaptive validation frameworks and integrating real-time
+            user feedback will be crucial for building accurate, consistent, and reliable
+            high-impact Knowledge Graphs across diverse and rapidly evolving domains.
+            <a href="#r29">[29], </a><a href="#r33">[33], </a></a><a href="#r34">[34]</a>.  
         </p>
     </section>
 
